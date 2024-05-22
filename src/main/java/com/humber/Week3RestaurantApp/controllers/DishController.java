@@ -52,6 +52,10 @@ public class DishController {
         //dishService.saveDish(dish)
         //model.addAttribute("dishes", dishService.getAllDishes());
         //we are stuck without a database and are only able to display the most recent input
+        if(dish.getPrice()>10){
+            model.addAttribute("error", "Price should be less than 10!");
+            return "add-dish";
+        }
         model.addAttribute("dishes", dish);
         //redirect to menu
         return "menu";

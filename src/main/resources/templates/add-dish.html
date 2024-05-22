@@ -12,6 +12,8 @@
     <header th:include="@{/fragements/header.html}"></header>
     <h1>Add Dish</h1>
     <div class="content">
+        <!--conditional rendering of the alert if the error exists or not-->
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
         <!-- method for what to do, action for where to do it, object is what was received from the controller-->
         <form method="post" th:action="@{add-dish}" th:object="${dish}">
             <!--th:field is saying what field this input is and the * is the object of the form-->
