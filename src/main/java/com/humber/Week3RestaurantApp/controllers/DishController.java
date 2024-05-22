@@ -1,11 +1,14 @@
 package com.humber.Week3RestaurantApp.controllers;
 
+import com.humber.Week3RestaurantApp.models.Dish;
 import com.humber.Week3RestaurantApp.services.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -32,6 +35,25 @@ public class DishController {
     @GetMapping("/dishes")
     public String getAllDishes(Model model) {
         model.addAttribute("dishes", dishService.getAllDishes());
+        return "menu";
+    }
+
+    //open up add-dish page
+    @GetMapping("/add-dish")
+    public String addDish(Model model) {
+        model.addAttribute("dish", new Dish());
+        return "add-dish";
+    }
+
+    //save the dish
+    @PostMapping("/add-dish")
+    public String addDish(@ModelAttribute Dish dish, Model model) {
+        //saving in db
+        //dishService.saveDish(dish)
+        //model.addAttribute("dishes", dishService.getAllDishes());
+        //we are stuck without a database and are only able to display the most recent input
+        model.addAttribute("dishes", dish);
+        //redirect to menu
         return "menu";
     }
 }
