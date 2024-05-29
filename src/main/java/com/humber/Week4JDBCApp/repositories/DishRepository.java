@@ -1,6 +1,6 @@
-package com.humber.Week3RestaurantApp.repositories;
+package com.humber.Week4JDBCApp.repositories;
 
-import com.humber.Week3RestaurantApp.models.Dish;
+import com.humber.Week4JDBCApp.models.Dish;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.humber</groupId>
-	<artifactId>Week3RestaurantApp</artifactId>
+	<artifactId>Week4JDBCApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Week3RestaurantApp</name>
+	<name>Week4JDBCApp</name>
 	<description>Fullstack restaurant application</description>
 	<properties>
 		<java.version>17</java.version>

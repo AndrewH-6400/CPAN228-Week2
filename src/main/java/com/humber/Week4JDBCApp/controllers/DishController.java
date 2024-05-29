@@ -1,7 +1,7 @@
-package com.humber.Week3RestaurantApp.controllers;
+package com.humber.Week4JDBCApp.controllers;
 
-import com.humber.Week3RestaurantApp.models.Dish;
-import com.humber.Week3RestaurantApp.services.DishService;
+import com.humber.Week4JDBCApp.models.Dish;
+import com.humber.Week4JDBCApp.services.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

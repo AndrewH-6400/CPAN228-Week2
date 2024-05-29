@@ -13,3 +13,36 @@
         color: cornflowerblue;
         font-size: 35px;
     }
+
+    .page-title{
+        text-align: center;
+        margin: 30px;
+        margin-left: 3vw;
+    }
+
+    form{
+        margin : 100px;
+        width: fit-content;
+        border: 1px grey solid;
+        border-radius: 8px;
+        padding: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .input{
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+
+    }
+
+    input{
+        margin-left: 10px;
+    }
+
+    .submit-button{
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+    }

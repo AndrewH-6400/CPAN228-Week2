@@ -1,10 +1,10 @@
-package com.humber.Week3RestaurantApp;
+package com.humber.Week4JDBCApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Week3RestaurantAppApplicationTests {
+class Week4JDBCApplicationTests {
 
 	@Test
 	void contextLoads() {
