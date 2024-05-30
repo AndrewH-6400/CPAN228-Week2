@@ -48,16 +48,20 @@ public class DishController {
     //save the dish
     @PostMapping("/add-dish")
     public String addDish(@ModelAttribute Dish dish, Model model) {
-        //saving in db
-        //dishService.saveDish(dish)
-        //model.addAttribute("dishes", dishService.getAllDishes());
-        //we are stuck without a database and are only able to display the most recent input
+        //this should be moved to the service layer
         if(dish.getPrice()>10){
             model.addAttribute("error", "Price should be less than 10!");
             return "add-dish";
         }
-        model.addAttribute("dishes", dish);
+
+        //saving in db
+        //1 is good anything else is error
+        int result = dishService.saveDish(dish);
+
+        model.addAttribute("dishes", dishService.getAllDishes());
+        model.addAttribute("message","Dish added successfully!");
         //redirect to menu
         return "menu";
+//        return "redirect:/restaurant/dishes";
     }
 }

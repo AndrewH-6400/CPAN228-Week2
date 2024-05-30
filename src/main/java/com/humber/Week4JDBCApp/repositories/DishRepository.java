@@ -18,12 +18,16 @@ public class DishRepository {
     JdbcTemplate template;
 
     //save a dish
-
-
+    public int save(Dish dish){
+        String sql = "INSERT INTO dish(name, category, price) VALUES(?,?,?)";
+        //places the dish values into the question mark values in the sql above
+        //will return an int to tell whether the update was successful or not
+        return template.update(sql, dish.getName(), dish.getCategory(),dish.getPrice());
+    }
 
     //get all dishes
     public List<Dish> getDishes(){
-        String sql = "SELECT * FROM Dish";
+        String sql = "SELECT * FROM dish";
 
         RowMapper<Dish> mapper = new RowMapper<Dish>() {
 

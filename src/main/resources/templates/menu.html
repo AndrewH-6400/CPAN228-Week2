@@ -12,6 +12,7 @@
         <header th:include="@{/fragments/header.html}"></header>
 
             <div class="content">
+                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
                 <h1 id="title">Menu</h1>
                 <table class="table table-striped">
                     <thead>

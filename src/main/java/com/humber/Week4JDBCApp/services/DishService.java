@@ -19,4 +19,9 @@ public class DishService {
 
         return dishRepository.getDishes();
     }
+
+    //save a dish
+    public int saveDish(Dish dish){
+        return dishRepository.save(dish);
+    }
 }
