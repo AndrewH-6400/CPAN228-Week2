@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/restaurant")
@@ -33,8 +30,9 @@ public class DishController {
 
     //Menu Page
     @GetMapping("/dishes")
-    public String getAllDishes(Model model) {
+    public String getAllDishes(Model model, @RequestParam(required = false) String message) {
         model.addAttribute("dishes", dishService.getAllDishes());
+        model.addAttribute("message",message);
         return "menu";
     }
 
@@ -58,10 +56,10 @@ public class DishController {
         //1 is good anything else is error
         int result = dishService.saveDish(dish);
 
-        model.addAttribute("dishes", dishService.getAllDishes());
-        model.addAttribute("message","Dish added successfully!");
-        //redirect to menu
-        return "menu";
-//        return "redirect:/restaurant/dishes";
+//        model.addAttribute("dishes", dishService.getAllDishes());
+
+//        //redirect to menu
+//        return "menu";
+        return "redirect:/restaurant/dishes?message=Dish added successfully!";
     }
 }
