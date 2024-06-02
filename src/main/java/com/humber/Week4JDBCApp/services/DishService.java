@@ -22,6 +22,11 @@ public class DishService {
 
     //save a dish
     public int saveDish(Dish dish){
+        //if the dish price is greater than 20, return 0 signifying an error
+        if(dish.getPrice()>20){
+            return 0;
+        }
+        //otherwise return the result of the save
         return dishRepository.save(dish);
     }
 }

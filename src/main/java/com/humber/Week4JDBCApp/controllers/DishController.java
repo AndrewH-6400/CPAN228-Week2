@@ -46,19 +46,21 @@ public class DishController {
     //save the dish
     @PostMapping("/add-dish")
     public String addDish(@ModelAttribute Dish dish, Model model) {
-        //this should be moved to the service layer
-        if(dish.getPrice()>10){
-            model.addAttribute("error", "Price should be less than 10!");
-            return "add-dish";
-        }
-
         //saving in db
         //1 is good anything else is error
         int result = dishService.saveDish(dish);
 
-//        model.addAttribute("dishes", dishService.getAllDishes());
-//        //redirect to menu
-//        return "menu";
-        return "redirect:/restaurant/dishes?message=Dish added successfully!";
+        //a result of 1 means the save was successful
+        if(result==1){
+            //redirect to menu
+            return "redirect:/restaurant/dishes?message=Dish added successfully!";
+        } else{
+            //the only error that can be handled is a pricing error, but more could be added as else if statements
+            model.addAttribute("error", "Price should be less than 20!");
+            return "add-dish";
+        }
+
+
+
     }
 }
