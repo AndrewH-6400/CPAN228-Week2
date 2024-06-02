@@ -57,7 +57,6 @@ public class DishController {
         int result = dishService.saveDish(dish);
 
 //        model.addAttribute("dishes", dishService.getAllDishes());
-
 //        //redirect to menu
 //        return "menu";
         return "redirect:/restaurant/dishes?message=Dish added successfully!";
