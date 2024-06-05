@@ -25,6 +25,7 @@ public class DishRepository {
         return template.update(sql, dish.getName(), dish.getCategory(),dish.getPrice());
     }
 
+    //test
     //get all dishes
     public List<Dish> getDishes(){
         String sql = "SELECT * FROM dish";
