@@ -24,8 +24,7 @@ public class DishRepository {
         //will return an int to tell whether the update was successful or not
         return template.update(sql, dish.getName(), dish.getCategory(),dish.getPrice());
     }
-
-    //test
+    //Another test
     //get all dishes
     public List<Dish> getDishes(){
         String sql = "SELECT * FROM dish";
