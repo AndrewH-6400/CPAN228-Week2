@@ -5,6 +5,7 @@ import com.humber.Week5JPA.repositories.DishRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DishService {
@@ -29,14 +30,35 @@ public class DishService {
     }
 
     //save a dish
-//    public Dish saveDish(Dish dish){
-//        return dishRepository.save(dish);
-//    }
     public int saveDish(Dish dish){
         if(dish.getPrice() < 15){
             dishRepository.save(dish);
             return 1;
         }
         return 0;
+    }
+    //get filtered dishes
+    public List<Dish> getFilteredDishes(String searchedCategory,Double searchedPrice){
+        return dishRepository.findByCategoryAndPrice(searchedCategory, searchedPrice);
+    }
+
+    //delete a dish
+    public int deleteDish(int id){
+        //check if the dish exists, then return positive, otherwise error
+        if(dishRepository.existsById(id)){
+            dishRepository.deleteById(id);
+            return 1;
+        }
+        return 0;
+    }
+
+    //update a dish
+    public void updateDish(int id){
+
+    }
+
+    //get dish by id
+    public Optional<Dish> getDishById(int id){
+        return dishRepository.findById(id);
     }
 }

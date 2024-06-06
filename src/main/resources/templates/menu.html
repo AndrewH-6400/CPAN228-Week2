@@ -10,10 +10,16 @@
     <div class="main">
 
         <header th:include="@{/fragments/header.html}"></header>
-
             <div class="content">
+                <form th:action="@{/restaurant/menu}" method="get">
+                    <input type="text" name="searchedCategory" placeholder="Category" />
+                    <input type="number" name="searchedPrice" placeholder="Price" />
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <a class="btn btn-primary" th:href="@{/restaurant/menu}">Reset</a>
+                </form>
                 <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
                 <h1 id="title">Menu</h1>
+
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -21,6 +27,7 @@
                             <th scope="col">NAME</th>
                             <th scope="col">CATEGORY</th>
                             <th scope="col">PRICE</th>
+                            <th scope="col">OPERATIONS</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +36,12 @@
                             <td th:text="${dish.name}"></td>
                             <td th:text="${dish.category}"></td>
                             <td th:text="${dish.price}"></td>
+                            <td><a
+                                    th:href="@{/restaurant/delete/{id}(id=${dish.id})}"
+                                    class="btn btn-danger btn-sm">Delete</a></td>
+                            <td><a
+                                    th:href="@{/restaurant/update/{id}(id=${dish.id})}"
+                                    class="btn btn-danger btn-sm">Update</a></td>
                         </tr>
                     </tbody>
                 </table>
