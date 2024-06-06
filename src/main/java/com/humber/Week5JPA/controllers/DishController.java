@@ -1,8 +1,7 @@
-package com.humber.Week4JDBCApp.controllers;
+package com.humber.Week5JPA.controllers;
 
-import com.humber.Week4JDBCApp.models.Dish;
-import com.humber.Week4JDBCApp.services.DishService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.humber.Week5JPA.models.Dish;
+import com.humber.Week5JPA.services.DishService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +14,14 @@ public class DishController {
 
     //Autowired is needed to "inject the variable"
     //Field injecting service into control, this is a dangerous thing to do and is not recommended
-    @Autowired
-    private DishService dishService;
+    //@Autowired
+    private final DishService dishService;
+
+    public DishController(DishService dishService) {
+        this.dishService = dishService;
+    }
+
+
 
     @Value("${restaurant.name}")
     private String name;
@@ -29,7 +34,7 @@ public class DishController {
     }
 
     //Menu Page
-    @GetMapping("/dishes")
+    @GetMapping("/menu")
     public String getAllDishes(Model model, @RequestParam(required = false) String message) {
         model.addAttribute("dishes", dishService.getAllDishes());
         model.addAttribute("message",message);
@@ -47,20 +52,12 @@ public class DishController {
     @PostMapping("/add-dish")
     public String addDish(@ModelAttribute Dish dish, Model model) {
         //saving in db
-        //1 is good anything else is error
-        int result = dishService.saveDish(dish);
+        int statusCode = dishService.saveDish(dish);
 
-        //a result of 1 means the save was successful
-        if(result==1){
-            //redirect to menu
-            return "redirect:/restaurant/dishes?message=Dish added successfully!";
-        } else{
-            //the only error that can be handled is a pricing error, but more could be added as else if statements
-            model.addAttribute("error", "Price should be less than 20!");
-            return "add-dish";
+        if(statusCode == 1){
+            return "redirect:/restaurant/menu?message=Dish added successfully!";
         }
-
-
-
+        model.addAttribute("error","Price should be less then 15!");
+        return "add-dish";
     }
 }
