@@ -53,8 +53,8 @@ public class DishService {
     }
 
     //update a dish
-    public void updateDish(int id){
-
+    public void updateDish(Dish dish){
+        dishRepository.save(dish);
     }
 
     //get dish by id

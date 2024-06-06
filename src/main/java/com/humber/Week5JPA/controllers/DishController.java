@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/restaurant")
@@ -83,5 +84,21 @@ public class DishController {
             return "redirect:/restaurant/menu?message=Dish deleted successfully!";
         }
         return"redirect:/restaurant/menu?message=Dish to be delted does not exist";
+    }
+
+    //update a dish (open the update form)
+    @GetMapping("/update/{id}")
+    public String updateDish(Model model, @PathVariable int id){
+        Optional<Dish> dishToUpdate;
+        dishToUpdate = dishService.getDishById(id);
+        model.addAttribute("dish", dishToUpdate.orElse(null));
+        return "add-dish";
+    }
+
+    //update a dish
+    @PostMapping("/update-dish")
+    public String updateDish(@ModelAttribute Dish dish) {
+        dishService.updateDish(dish);
+        return "redirect:/restaurant/menu?message=Dish Updated Successfully!";
     }
 }
