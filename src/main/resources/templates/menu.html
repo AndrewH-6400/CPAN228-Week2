@@ -11,15 +11,16 @@
 
         <header th:include="@{/fragments/header.html}"></header>
             <div class="content">
+                <!--form for the search functions which sends the information for category and price to get menu-->
+                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+                <h1 id="title">Menu</h1>
                 <form th:action="@{/restaurant/menu}" method="get">
                     <input type="text" name="searchedCategory" placeholder="Category" />
                     <input type="number" name="searchedPrice" placeholder="Price" />
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a class="btn btn-primary" th:href="@{/restaurant/menu}">Reset</a>
+                    <a class="btn btn-danger" th:href="@{/restaurant/add-dish}">Add Dish</a>
                 </form>
-                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
-                <h1 id="title">Menu</h1>
-
                 <table class="table table-striped">
                     <thead>
                         <tr>

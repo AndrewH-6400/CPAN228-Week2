@@ -1,7 +1,7 @@
-package com.humber.Week5JPA.repositories;
+package com.humber.Week6JPA.repositories;
 
 
-import com.humber.Week5JPA.models.Dish;
+import com.humber.Week6JPA.models.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
