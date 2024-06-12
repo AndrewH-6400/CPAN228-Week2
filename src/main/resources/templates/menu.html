@@ -14,11 +14,11 @@
                 <!--form for the search functions which sends the information for category and price to get menu-->
                 <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
                 <h1 id="title">Menu</h1>
-                <form th:action="@{/restaurant/menu}" method="get">
+                <form th:action="@{/restaurant/menu}" method="get" class="m-0 border-0 px-0">
                     <input type="text" name="searchedCategory" placeholder="Category" />
                     <input type="number" name="searchedPrice" placeholder="Price" />
                     <button type="submit" class="btn btn-primary">Filter</button>
-                    <a class="btn btn-primary" th:href="@{/restaurant/menu}">Reset</a>
+                    <a class="btn btn-primary" th:href="@{/restaurant/menu/1}">Reset</a>
                     <a class="btn btn-danger" th:href="@{/restaurant/add-dish}">Add Dish</a>
                 </form>
                 <table class="table table-striped">
@@ -46,6 +46,25 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="pagination">
+<!--                    <button type="button" class="btn btn-outline-secondary">Secondary</button>-->
+<!--                    <-</a>-->
+<!--                    <a class="btn btn-outline-secondary" th:href="@{/restaurant/menu/${pageNo+1}">-></a>-->
+                    <div class="pagination-info">
+                        <div>Total dishes: <span th:text="${totalItems}"></span></div>
+                        <div>Current Page: <span th:text="${currentPage}"></span></div>
+                        <div>Total Pages: <span th:text="${totalPages}"></span></div>
+                    </div>
+                    <div class="pagination-no">
+                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo - 1}}"><-</a>
+                        <div th:each="i : ${#numbers.sequence(1,totalPages)}">
+<!--                            /restaurant/menu/'+i'-->
+                            <a th:href="@{'/restaurant/menu/' + ${i}}" th:text="${i}"></a>
+                        </div>
+                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo + 1}}">-></a>
+                    </div>
+                </div>
             </div>
     </div>
 </body>
