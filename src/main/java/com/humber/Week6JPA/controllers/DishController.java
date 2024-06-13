@@ -45,7 +45,13 @@ public class DishController {
     public String getAllDishes(Model model, @RequestParam(required = false) String message,
                                @RequestParam(required = false) String searchedCategory,
                                @RequestParam(required = false) Double searchedPrice,
-                               @PathVariable(required = false) int pageNo) {
+                               @PathVariable(required = false) int pageNo,
+                               @RequestParam(required = false) String sortField,
+                               @RequestParam(required = false) String sortDirection) {
+
+        //give default values to sortField and sortDirection
+        sortField = sortField == null ? "id" : sortField;
+        sortDirection = sortDirection == null ? "asc" : sortDirection;
 
         if(searchedCategory != null && searchedPrice != null) {
             //return back the filtered dishes from the service layer
@@ -55,13 +61,21 @@ public class DishController {
             return "menu";
         }
 
-        //get paginated dishes from the service layer
-        Page<Dish> page = dishService.getPaginatedDishes(pageSize,pageNo);
+
+
+        //pagination info
+        Page<Dish> page = dishService.getPaginatedDishes(pageSize,pageNo,sortField,sortDirection);
 
         model.addAttribute("dishes", page.getContent());
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("currentPage",pageNo);
         model.addAttribute("totalItems",page.getTotalElements());
+
+        //sorting info
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDirection",sortDirection);
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
         model.addAttribute("message",message);
         return "menu";
     }

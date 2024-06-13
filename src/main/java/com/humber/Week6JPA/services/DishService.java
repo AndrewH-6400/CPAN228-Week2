@@ -5,6 +5,7 @@ import com.humber.Week6JPA.repositories.DishRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,9 +62,13 @@ public class DishService {
         return dishRepository.findById(id);
     }
 
-    //pagination method
-    public Page<Dish> getPaginatedDishes(int pageSize, int pageNo){
-        Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+    //pagination and sorting method
+    public Page<Dish> getPaginatedDishes(int pageSize, int pageNo, String sortField, String sortDirection){
+        //sort the data based on the sort field and sort direction
+        //conditional sort the field by asc or desc based on sortDirection
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize,sort);
         return dishRepository.findAll(pageable);
     }
 }

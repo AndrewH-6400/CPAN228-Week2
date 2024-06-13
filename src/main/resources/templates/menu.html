@@ -24,10 +24,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">NAME</th>
-                            <th scope="col">CATEGORY</th>
-                            <th scope="col">PRICE</th>
+                            <th scope="col">
+                                <a th:href="@{'/restaurant/menu/' + ${currentPage} + '?sortField=id&sortDirection=' + ${reverseSortDirection}}">ID</a>
+                            </th>
+                            <th scope="col">
+                                <a th:href="@{'/restaurant/menu/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}">NAME</a>
+                            </th>
+                            <th scope="col">
+                                <a th:href="@{'/restaurant/menu/' + ${currentPage} + '?sortField=category&sortDirection=' + ${reverseSortDirection}}">CATEGORY</a>
+                            </th>
+                            <th scope="col">
+                                <a th:href="@{'/restaurant/menu/' + ${currentPage} + '?sortField=price&sortDirection=' + ${reverseSortDirection}}">PRICE</a>
+                            </th>
                             <th scope="col">OPERATIONS</th>
                         </tr>
                     </thead>
@@ -57,12 +65,12 @@
                         <div>Total Pages: <span th:text="${totalPages}"></span></div>
                     </div>
                     <div class="pagination-no">
-                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo - 1}}"><-</a>
+                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}"><-</a>
+<!--                        create a link for each of the pages-->
                         <div th:each="i : ${#numbers.sequence(1,totalPages)}">
-<!--                            /restaurant/menu/'+i'-->
-                            <a th:href="@{'/restaurant/menu/' + ${i}}" th:text="${i}"></a>
+                            <a th:href="@{'/restaurant/menu/' + ${i} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}" th:text="${i}"></a>
                         </div>
-                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo + 1}}">-></a>
+                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo + 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">-></a>
                     </div>
                 </div>
             </div>
