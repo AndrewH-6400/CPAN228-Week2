@@ -68,6 +68,7 @@ public class DishService {
         //conditional sort the field by asc or desc based on sortDirection
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
 
+        //Sending the pageable with all the layout information and returning a Page object of Dishes
         Pageable pageable = PageRequest.of(pageNo-1, pageSize,sort);
         return dishRepository.findAll(pageable);
     }

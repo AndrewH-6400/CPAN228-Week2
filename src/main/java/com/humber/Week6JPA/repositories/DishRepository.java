@@ -18,4 +18,5 @@ public interface DishRepository extends JpaRepository<Dish,Integer> {
     //native query (custom method) changes based on what you use (SQL, mongoDB, etc...)
     @Query(value = "SELECT * FROM dish WHERE LOWER(category) = LOWER(?1) and price = ?2", nativeQuery = true)
     List<Dish> findByCategoryAndPrice(String category, Double price);
+
 }

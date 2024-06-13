@@ -14,7 +14,7 @@
                 <!--form for the search functions which sends the information for category and price to get menu-->
                 <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
                 <h1 id="title">Menu</h1>
-                <form th:action="@{/restaurant/menu}" method="get" class="m-0 border-0 px-0">
+                <form th:action="@{/restaurant/menu/1}" method="get" class="m-0 border-0 px-0">
                     <input type="text" name="searchedCategory" placeholder="Category" />
                     <input type="number" name="searchedPrice" placeholder="Price" />
                     <button type="submit" class="btn btn-primary">Filter</button>
@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
 
-                <div class="pagination">
+                <div th:if="${totalPages}" class="pagination">
 <!--                    <button type="button" class="btn btn-outline-secondary">Secondary</button>-->
 <!--                    <-</a>-->
 <!--                    <a class="btn btn-outline-secondary" th:href="@{/restaurant/menu/${pageNo+1}">-></a>-->
@@ -65,12 +65,12 @@
                         <div>Total Pages: <span th:text="${totalPages}"></span></div>
                     </div>
                     <div class="pagination-no">
-                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}"><-</a>
+                        <a class="btn btn-outline-secondary" th:if="${currentPage} != 1S" th:href="@{'/restaurant/menu/' + ${pageNo - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}"><-</a>
 <!--                        create a link for each of the pages-->
                         <div th:each="i : ${#numbers.sequence(1,totalPages)}">
                             <a th:href="@{'/restaurant/menu/' + ${i} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}" th:text="${i}"></a>
                         </div>
-                        <a class="btn btn-outline-secondary" th:href="@{'/restaurant/menu/' + ${pageNo + 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">-></a>
+                        <a class="btn btn-outline-secondary" th:if="${totalPages} != ${currentPage}" th:href="@{'/restaurant/menu/' + ${pageNo + 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">-></a>
                     </div>
                 </div>
             </div>

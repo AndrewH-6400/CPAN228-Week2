@@ -56,13 +56,14 @@ public class DishController {
         if(searchedCategory != null && searchedPrice != null) {
             //return back the filtered dishes from the service layer
             List<Dish> filteredDishes = dishService.getFilteredDishes(searchedCategory,searchedPrice);
-            model.addAttribute("dishes", filteredDishes.isEmpty()?dishService.getAllDishes() : filteredDishes);
-            model.addAttribute("message",filteredDishes.isEmpty()?"data was not filtered" : "data filtered successfully!");
-            return "menu";
+            if(filteredDishes.isEmpty()){
+                message = "Data not filtered";
+            } else {
+                model.addAttribute("dishes", filteredDishes);
+                model.addAttribute("message","data filtered successfully!");
+                return "menu";
+            }
         }
-
-
-
         //pagination info
         Page<Dish> page = dishService.getPaginatedDishes(pageSize,pageNo,sortField,sortDirection);
 
