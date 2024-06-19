@@ -1,4 +1,4 @@
-package com.humber.Week6JPA.models;
+package com.humber.Week7Security.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

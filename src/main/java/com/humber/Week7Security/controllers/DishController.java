@@ -1,7 +1,7 @@
-package com.humber.Week6JPA.controllers;
+package com.humber.Week7Security.controllers;
 
-import com.humber.Week6JPA.models.Dish;
-import com.humber.Week6JPA.services.DishService;
+import com.humber.Week7Security.models.Dish;
+import com.humber.Week7Security.services.DishService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="main">
-
         <header th:include="@{/fragments/header.html}"></header>
             <div class="content">
                 <!--form for the search functions which sends the information for category and price to get menu-->
@@ -65,7 +64,7 @@
                         <div>Total Pages: <span th:text="${totalPages}"></span></div>
                     </div>
                     <div class="pagination-no">
-                        <a class="btn btn-outline-secondary" th:if="${currentPage} != 1S" th:href="@{'/restaurant/menu/' + ${pageNo - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}"><-</a>
+                        <a class="btn btn-outline-secondary" th:if="${currentPage} != 1" th:href="@{'/restaurant/menu/' + ${pageNo - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}"><-</a>
 <!--                        create a link for each of the pages-->
                         <div th:each="i : ${#numbers.sequence(1,totalPages)}">
                             <a th:href="@{'/restaurant/menu/' + ${i} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}" th:text="${i}"></a>

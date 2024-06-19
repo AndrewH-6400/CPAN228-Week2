@@ -1,23 +1,22 @@
-package com.humber.Week6JPA;
+package com.humber.Week7Security;
 
-import com.humber.Week6JPA.models.Dish;
-import com.humber.Week6JPA.services.DishService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.humber.Week7Security.models.Dish;
+import com.humber.Week7Security.services.DishService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Week6JPAApplication implements CommandLineRunner {
+public class Week7Security implements CommandLineRunner {
 
 	// injecting service - constructor injection
 	private final DishService dishService;
-	public Week6JPAApplication(DishService dishService) {
+	public Week7Security(DishService dishService) {
 		this.dishService = dishService;
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(Week6JPAApplication.class, args);
+		SpringApplication.run(Week7Security.class, args);
 	}
 
 	@Override

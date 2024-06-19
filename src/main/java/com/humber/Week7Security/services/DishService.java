@@ -1,7 +1,7 @@
-package com.humber.Week6JPA.services;
+package com.humber.Week7Security.services;
 
-import com.humber.Week6JPA.models.Dish;
-import com.humber.Week6JPA.repositories.DishRepository;
+import com.humber.Week7Security.models.Dish;
+import com.humber.Week7Security.repositories.DishRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
