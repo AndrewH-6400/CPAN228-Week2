@@ -18,7 +18,7 @@
                     <input type="number" name="searchedPrice" placeholder="Price" />
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a class="btn btn-primary" th:href="@{/restaurant/menu/1}">Reset</a>
-                    <a class="btn btn-danger" th:href="@{/restaurant/add-dish}">Add Dish</a>
+                    <a class="btn btn-danger" th:href="@{/restaurant/admin/add-dish}">Add Dish</a>
                 </form>
                 <table class="table table-striped">
                     <thead>
@@ -45,10 +45,10 @@
                             <td th:text="${dish.category}"></td>
                             <td th:text="${dish.price}"></td>
                             <td><a
-                                    th:href="@{/restaurant/delete/{id}(id=${dish.id})}"
+                                    th:href="@{/restaurant/admin/delete/{id}(id=${dish.id})}"
                                     class="btn btn-danger btn-sm">Delete</a></td>
                             <td><a
-                                    th:href="@{/restaurant/update/{id}(id=${dish.id})}"
+                                    th:href="@{/restaurant/admin/update/{id}(id=${dish.id})}"
                                     class="btn btn-danger btn-sm">Update</a></td>
                         </tr>
                     </tbody>

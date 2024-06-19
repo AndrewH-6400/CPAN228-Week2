@@ -17,7 +17,7 @@
         <!--conditional rendering of the alert if the error exists or not-->
         <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
         <!-- method for what to do, action for where to do it, object is what was received from the controller-->
-        <form method="post" th:action="${dish.name}==null? @{/restaurant/add-dish} : @{/restaurant/update-dish}" th:object="${dish}">
+        <form method="post" th:action="${dish.name}==null? @{/restaurant/admin/add-dish} : @{/restaurant/admin/update-dish}" th:object="${dish}">
             <!--th:field is saying what field this input is and the * is the object of the form-->
             <!--if not an input type then the form will not handle the field    -->
             <input type="hidden" th:field="*{id}">
