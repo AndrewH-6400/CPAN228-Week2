@@ -2,7 +2,6 @@ package com.humber.Week7Security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -22,12 +21,20 @@ public class SecurityConfig {
         //these are chains
         http.authorizeHttpRequests((authorize) -> authorize
                 //each route and what role can go where, ** means everything following that path
-                .requestMatchers("/restaurant/home").permitAll()
+                .requestMatchers("/restaurant/home","/login/**").permitAll()
                 .requestMatchers("/restaurant/menu/**").hasAnyRole("USER","ADMIN")
                 .requestMatchers("/restaurant/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-        //let the user login with whatever default form spring security is using
-        ).formLogin(Customizer.withDefaults());
+        //send what we want the security to use as login instead of the default
+        ).formLogin(customLogin -> {
+            customLogin.loginPage("/login")
+                    .defaultSuccessUrl("/restaurant/home")
+                    .permitAll();
+
+        })
+                .logout(l -> l
+                        .logoutUrl("/logout")
+                        .permitAll());
 
         return http.build();
     }
